@@ -35,9 +35,9 @@ func Convert(input string) (string, error) {
 
 	// автоматически определяем входные данные и конвертируем в противоположный формат
 	if isMorse(input) {
-		result = morse.DefaultConverter.ToText(input)
+		result = morse.ToText(input)
 	} else {
-		result = morse.DefaultConverter.ToMorse(input)
+		result = morse.ToMorse(input)
 	}
 
 	// проверяем на наличие во входной строке неподдерживаемых символов

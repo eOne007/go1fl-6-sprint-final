@@ -9,14 +9,11 @@ import (
 
 func main() {
 	// создаём логгер и сервер
-	logger := log.New(os.Stdout, "SERVER: ", log.LstdFlags|log.Lshortfile)
+	logger := log.New(os.Stdout, "SERVER: ", log.LstdFlags)
 	srv := server.NewServer(logger)
 
-	// логируем запуск
-	logger.Println("Сервер запускается на :8080...")
-
 	// Запускаем HTTP-сервер
-	err := srv.HTTP.ListenAndServe()
+	err := srv.Start()
 	if err != nil {
 		logger.Fatalf("Ошибка запуска сервера: %v", err)
 	}

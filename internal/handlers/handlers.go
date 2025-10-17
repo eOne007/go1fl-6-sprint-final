@@ -51,7 +51,7 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	if ext == "" {
 		ext = ".txt" // если расширение не указано
 	}
-	filename := time.Now().UTC().String() + ext
+	filename := time.Now().UTC().Format("2006-01-02_15-04-05.000000") + ext
 
 	// создаем локальный файл
 	localFile, err := os.Create(filename)

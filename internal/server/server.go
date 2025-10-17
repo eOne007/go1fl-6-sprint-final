@@ -17,7 +17,6 @@ type Server struct {
 // NewServer создает и настраивает новый сервер
 func NewServer(logger *log.Logger) *Server {
 
-	// создаем новый роутер
 	mux := http.NewServeMux()
 
 	// регистрируем в роутере хендлеры из пакета handlers
@@ -25,7 +24,6 @@ func NewServer(logger *log.Logger) *Server {
 	mux.HandleFunc("/upload", handlers.UploadHandler)
 
 	// создаем экземпляр структуры с перечислением полей согласно ТЗ
-
 	httpServer := &http.Server{
 		Addr:         ":8080",          // используем порт 8080
 		Handler:      mux,              // передаем наш http-роутер
@@ -39,5 +37,8 @@ func NewServer(logger *log.Logger) *Server {
 		Logger: logger,
 		HTTP:   httpServer,
 	}
-
+}
+func (s *Server) Start() error {
+	s.Logger.Println("Старт сервера на :8080")
+	return s.HTTP.ListenAndServe()
 }
